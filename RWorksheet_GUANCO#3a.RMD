@@ -1,0 +1,28 @@
+                                  #USING VECTOR
+#1
+upperCase <- LETTERS
+lowerCase <- letters
+print(upperCase)
+print(lowerCase)
+#upperCase
+# [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W"
+#[24] "X" "Y" "Z"
+#lowerCase
+# [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w"
+#[24] "x" "y" "z"
+#1a.
+x <- head(LETTERS, 11)
+print(x)
+# [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K"
+#1b.
+
+#1c.
+
+#1d.
+y <- tail(letters, 5)
+print(y)
+#[1] "v" "w" "x" "y" "z"
+#1e.
+z <- 
+
+#2
