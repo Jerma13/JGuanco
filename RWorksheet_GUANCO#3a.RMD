@@ -1,28 +1,271 @@
-                                  #USING VECTOR
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr:::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 #1
 upperCase <- LETTERS
 lowerCase <- letters
 print(upperCase)
 print(lowerCase)
+```
 #upperCase
 # [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W"
 #[24] "X" "Y" "Z"
 #lowerCase
 # [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w"
 #[24] "x" "y" "z"
+
 #1a.
+```{r}
 x <- head(LETTERS, 11)
 print(x)
+```
 # [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K"
+
 #1b.
+```{r}
+odd_letters <- seq(from = 1, to = length(LETTERS),by = 2)
+odd <- LETTERS[odd_letters]
+print(odd)
+```
+# [1] "A" "C" "E" "G" "I" "K" "M" "O" "Q" "S" "U" "W" "Y"
 
 #1c.
+```{r}
+vowels <- c("A", "E", "I", "O", "U")
+print(vowels)
+```
+# [1] "A" "E" "I" "O" "U"
 
 #1d.
+```{r}
 y <- tail(letters, 5)
 print(y)
+```
 #[1] "v" "w" "x" "y" "z"
-#1e.
-z <- 
 
-#2
+#1e.
+```{r}
+letter <- letters[15:24]
+print(letter)
+```
+# [1] "o" "p" "q" "r" "s" "t" "u" "v" "w" "x"
+
+#2.
+```{r}
+temperature <- c(avg_temp_tuguegarao = 42, avg_temp_manila = 39, avg_temp_iloilo = 34, avg_temp_tacloban = 34, avg_temp_samal_island = 30, avg_temp_davao_city = 27)
+print(temperature)
+```
+#avg_temp_tuguegarao       avg_temp_manila       avg_temp_iloilo     avg_temp_tacloban
+#                   42                    39                    34                    34
+#avg_temp_samal_island   avg_temp_davao_city
+#                   30                    27
+
+#2a.
+```{r}
+city <- c("Tuguegarao City","Manila","Iloilo City","Tacloban","Samal Island","Davao City")
+print(city)
+```
+#[1] "Tuguegarao City" "Manila"          "Iloilo City"     "Tacloban"        "Samal Island"  
+#[6] "Davao City"
+
+#2b.
+```{r}
+temp <- c(42, 39, 34, 34, 30, 27)
+print(temp)
+```
+#[1] 42 39 34 34 30 27
+
+#2c.
+```{r}
+df <- data.frame(city,temp)
+print(df)
+```
+#            city   temp
+#1 Tuguegarao City   42
+#2          Manila   39
+#3     Iloilo City   34
+#4        Tacloban   34
+#5    Samal Island   30
+#6      Davao City   27
+
+#2d.
+```{r}
+names(df) <- c("City", "Temperature")
+print(df)
+```
+#             City Temperature
+#1 Tuguegarao City          42
+#2          Manila          39
+#3     Iloilo City          34
+#4        Tacloban          34
+#5    Samal Island          30
+#6      Davao City          27
+
+#2e.
+```{r}
+str(df)
+```
+#'data.frame': 6 obs. of  2 variables:
+# $ City       : chr  "Tuguegarao City" "Manila" "Iloilo City" "Tacloban" ...
+# $ Temperature: num  42 39 34 34 30 27
+# The data frame has 6 obs and 2 variables.The data type of the variable "City" has a factor with 6 levels and the "Temperature" is a numeric variable.
+
+#2f.
+```{r}
+df[3,]
+```
+#for row 3
+#         City Temperature
+# 3 Iloilo City          34
+df[4,]
+#      City Temperature
+# 4 Tacloban          34
+
+#2g.
+```{r}
+df[df$Temperature==max(df$Temperature), "City"]
+df[df$Temperature==min(df$Temperature), "City"]
+```
+#[1] "Tuguegarao City"
+#[1] "Davao City"
+
+
+USING MATRICES
+
+#2a.
+```{r}
+mat <- matrix(c(1:8, 11:14), nrow=3, ncol=4, byrow = TRUE)
+mat
+```
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    2    3    4
+# [2,]    5    6    7    8
+# [3,]   11   12   13   14
+
+#2b.
+```{r}
+mat <- matrix(c(1:8, 11:14), nrow=3, ncol=4, byrow = TRUE)
+mat_multiply <- mat*2
+mat_multiply
+```
+#      [,1] [,2] [,3] [,4]
+# [1,]    2    4    6    8
+# [2,]   10   12   14   16
+# [3,]   22   24   26   28
+
+#2c.
+```{r}
+mat[2,]
+```
+# [1] 5 6 7 8
+
+#2d.
+```{r}
+mat[1:2, 3:4]
+```
+#      [,1] [,2]
+# [1,]    3    4
+# [2,]    7    8
+
+#2e.
+```{r}
+mat[3,2:3]
+```
+# [1] 12 13
+
+#2f.
+```{r}
+mat[,4]
+```
+# [1]  4  8 14
+
+#2g.
+```{r}
+rownames(mat_multiply) <- c("isa", "dalawa", "tatlo")
+colnames(mat_multiply) <- c("uno", "dos", "tres", "quatro")
+mat_multiply
+```
+#        uno dos tres quatro
+# isa      2   4    6      8
+# dalawa  10  12   14     16
+# tatlo   22  24   26     28
+
+#2h.
+```{r}
+dim(mat) <- c(6,2)
+mat
+```
+#      [,1] [,2]
+# [1,]    1    3
+# [2,]    5    7
+# [3,]   11   13
+# [4,]    2    4
+# [5,]    6    8
+# [6,]   12   14
+
+
+USING ARRAYS
+
+#3a.
+```{r}
+p <- rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), each=2)
+a <- array(p,dim=c(2,4,3))
+a
+```
+# , , 1
+
+#     [,1] [,2] [,3] [,4]
+# [1,]    1    2    3    6
+# [2,]    1    2    3    6
+
+# , , 2
+
+#     [,1] [,2] [,3] [,4]
+# [1,]    7    8    9    0
+# [2,]    7    8    9    0
+
+# , , 3
+
+#     [,1] [,2] [,3] [,4]
+# [1,]    3    4    5    1
+# [2,]    3    4    5    1
+
+#3b.
+```{r}
+Array has 3 dimensions
+```
+
+#3c.
+```{r}
+p <- rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), each=2)
+h <- array(p,dim=c(2,4,3))
+row_names <- letters[1:2]
+col_names <- LETTERS[1:4]
+dimnames(h) <- list(row_names, col_names, c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array"))
+h
+```
+#, , 1st-Dimensional Array
+
+#  A B C D
+# a 1 2 3 6
+# b 1 2 3 6
+
+# , , 2nd-Dimensional Array
+
+#  A B C D
+# a 7 8 9 0
+# b 7 8 9 0
+
+# , , 3rd-Dimensional Array
+
+#   A B C D
+# a 3 4 5 1
+# b 3 4 5 1
