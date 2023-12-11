@@ -1,0 +1,68 @@
+---
+title: "RWorksheet_guanco#4c.rmd"
+author: "Jermalyn"
+date: "2023-12-11"
+output: pdf_document
+---
+
+```{r 1}
+mpgDF <- read.csv("mpg.csv")
+mpgDF
+#b. Which variables from mpg dataset are categorical?
+# The categorical are manufacturer, model, trans, class, drv and fl
+#c. Which are continuous variables?
+# The continues variables are displ, cyl, cty, hwy, and year
+```
+
+
+```{r 2}
+library("dplyr")
+MPGcount <- mpgDF %>%
+count(manufacturer,model)
+MPGcount
+```
+
+```{r b. Graph the result by using plot() and ggplot(). Write the codes and its result.}
+uniqueMPG <- MPGcount[c(3,6,10,12,16:22,24,26,27,29),1:3,]
+uniqueMPG
+barplot(uniqueMPG$n, main = "Unique Cars",
+        xlab = "Cars",
+        ylab = "Total Numbers",
+        names.arg = uniqueMPG$model,
+        cex.names = 0.35,
+        col = c("#e600e6","#00FFE0","#ff1a1a","#FFE000","#99e600"))
+```
+
+```{r a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?}
+ggplot(mpg, aes(model, manufacturer)) + geom_point()
+#It haven't specified any arguments so it shows a basic scatterplot with its default settings.
+#b. For you, is it useful? If not, how could you modify the data to make it more informative?
+#It is not very informative as it is, it should have a compatible variables for its data set.
+```
+
+```{r 3}
+data(mpg)
+top20 <-mpg[1:20,1:11]
+top20Model <-top20$model
+top20Num <- top20$n
+ggplot(top20, aes(x = year, y = model)) +
+  geom_point() +
+  ggtitle("Top 20 Observations") +
+  xlab("Year") +
+  ylab("Model") +
+  theme_classic()
+```
+
+```{r 5}
+data(mpg)
+cylDispl <- mpg[c("cyl", "displ")]
+
+library(ggplot2)
+library(dplyr)
+cylDispl %>% ggplot(aes(x = cyl, y = displ, fill = displ)) +
+  geom_point() +
+  geom_smooth(stat="identity", se=FALSE) +
+  ggtitle("Relationship between No. of Cylinders and Engine Displacement") +
+  theme_classic()
+
+```
